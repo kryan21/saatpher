@@ -1,4 +1,4 @@
-<!-- SAAT-LIVE-V11 -->
+<!-- SAAT-LIVE-V13 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +148,7 @@ footer{border-top:1px solid var(--line);padding:36px 0}
  .hero-grid{grid-template-columns:repeat(4,1fr);height:auto}.hero-main{grid-column:1/-1;height:54svh;min-height:340px}.hero-side{height:120px}
 }
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <header><div class="nav">
@@ -159,7 +160,7 @@ footer{border-top:1px solid var(--line);padding:36px 0}
 </div>
 
 <main id="top">
-<section class="intro reveal"><div class="wrap"><span class="pill">● Gallery</span><h1>Moments that define our work</h1><p>From quiet exchanges to extraordinary celebrations — a selection of imagery shaped by emotion, light and an editorial eye.</p></div></section>
+<section class="intro reveal"><div class="wrap"><span class="pill">● Gallery</span><h1>Real weddings, real frames.</h1><p>Photographs from the weddings we have shot — haldi, engagement, pre-wedding, wedding day and reception, in the light they actually happened in.</p></div></section>
 
 <section class="reveal" id="visual" style="padding-top:0"><div class="wrap">
  <p class="kicker">Visual Stories</p>
@@ -227,6 +228,7 @@ document.querySelector('.hero-play').onclick=e=>{e.preventDefault();document.que
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')),1500);
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
 document.querySelectorAll('.story').forEach(c=>{c.onclick=()=>{lbImg.src=c.dataset.img;lb.classList.add('open')}});
 document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
