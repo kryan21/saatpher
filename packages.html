@@ -1,4 +1,4 @@
-<!-- SAAT-LIVE-V25 -->
+<!-- SAAT-LIVE-V26 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,6 +203,32 @@ h2{font-weight:500;letter-spacing:.05em}
 .lede{color:var(--muted)}
 .spread h3,.about-grid h3,.card b,.home-form h3{font-weight:500}
 
+
+/* Packages — royal glitter layer */
+#package{background:radial-gradient(700px 340px at 50% -40px,rgba(233,217,174,.45),transparent 70%)}
+#package .wrap{position:relative}
+.royal-rule{display:flex;align-items:center;gap:14px;max-width:340px;margin:20px auto 4px;color:var(--gold)}
+.royal-rule::before,.royal-rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.royal-rule span{font-size:13px;animation:twinkle 2.6s ease-in-out infinite}
+.sparkle{position:absolute;color:#C9A86A;pointer-events:none;animation:twinkle 3.2s ease-in-out infinite;z-index:1}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8) rotate(0deg)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
+#package h2 em{background:linear-gradient(100deg,#8A6D3B,#B08D57 30%,#E9D9AE 50%,#B08D57 70%,#8A6D3B);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.cov-toggle button.active{background:linear-gradient(120deg,#2B211A,#54402A);box-shadow:0 8px 22px rgba(43,33,26,.22)}
+.pkg{transition:transform .45s ease,box-shadow .45s ease}
+.pkg:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(43,33,26,.13)}
+.pkg::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(233,217,174,.38),transparent);transform:skewX(-18deg);transition:left .85s ease;pointer-events:none}
+.pkg:hover::after{left:135%}
+.pkg .amt{background:linear-gradient(100deg,#6E5327,#B08D57 35%,#D9BE7E 50%,#B08D57 65%,#6E5327);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.pkg.featured{box-shadow:0 0 0 1px rgba(176,141,87,.65),0 30px 60px rgba(43,33,26,.28)}
+.pkg.featured .amt{background:linear-gradient(100deg,#C9A86A,#F1E5C3 35%,#FFF7DC 50%,#F1E5C3 65%,#C9A86A);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.pkg li::before{animation:twinkle 3s ease-in-out infinite}
+.pkg li:nth-child(2)::before{animation-delay:.5s}.pkg li:nth-child(3)::before{animation-delay:1s}.pkg li:nth-child(4)::before{animation-delay:1.5s}.pkg li:nth-child(5)::before{animation-delay:2s}.pkg li:nth-child(6)::before{animation-delay:2.5s}
+.pkg-grid.flip .amt{animation:priceIn .5s ease both}
+@keyframes priceIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step4{transition:border-color .35s,transform .35s}.step4:hover{border-color:var(--gold);transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){.pkg .amt,#package h2 em,.sparkle,.royal-rule span,.pkg li::before{animation:none}}
+
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -218,10 +244,11 @@ h2{font-weight:500;letter-spacing:.05em}
 <main id="top">
 <section class="intro reveal"><div class="wrap"><span class="pill">● Packages</span><h1>Choose your coverage.</h1><p>One day or two. Both sides, always.</p></div></section>
 
-<section class="reveal" id="package"><div class="wrap">
+<section class="reveal" id="package"><div class="wrap"><span class="sparkle" style="left:4%;top:6px;font-size:20px">✦</span><span class="sparkle" style="right:5%;top:30px;font-size:15px;animation-delay:.8s">✦</span><span class="sparkle" style="left:10%;top:120px;font-size:13px;animation-delay:1.6s">✦</span><span class="sparkle" style="right:11%;top:150px;font-size:18px;animation-delay:2.2s">✦</span>
  <p class="kicker" style="text-align:center">Silver · Gold · Platinum</p>
  <h2 style="text-align:center;font-family:'Playfair Display',Georgia,serif;font-size:clamp(30px,4vw,46px);line-height:1.1;margin:10px 0">Three packages. <em>One promise.</em></h2>
  <p class="lede" style="text-align:center;margin-left:auto;margin-right:auto">Every package covers both families — the groom's side and the bride's side, by one full creative team.</p>
+ <div class="royal-rule"><span>✦</span></div>
  <div class="cov-toggle" role="tablist" aria-label="Coverage">
   <button class="active" data-cov="one" type="button">One Day</button>
   <button data-cov="two" type="button">Two Day</button>
@@ -314,7 +341,7 @@ document.querySelectorAll('.cov-toggle button').forEach(b=>{b.onclick=()=>{
  document.querySelectorAll('.cov-toggle button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
  const k=b.dataset.cov;
  document.querySelectorAll('.pkg .amt').forEach(a=>a.textContent=a.dataset[k]);
- document.querySelectorAll('.pkg .splitline').forEach(s=>s.textContent=s.dataset[k]);
+ const g=document.querySelector('.pkg-grid');g.classList.remove('flip');void g.offsetWidth;g.classList.add('flip');document.querySelectorAll('.pkg .splitline').forEach(s=>s.textContent=s.dataset[k]);
  document.getElementById('covNote').textContent = k==='one' ? 'Wedding Day — covered from both sides.' : 'Haldi · Engagement · Wedding Day — covered from both sides.';
 };});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
